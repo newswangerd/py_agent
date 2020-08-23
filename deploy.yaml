@@ -1,0 +1,22 @@
+---
+- hosts: pi
+  tasks:
+  - name: copy src to host
+    copy:
+      src: src/
+      dest: /opt/py-agent/
+    become: yes
+  - name: build images
+    docker_image:
+      build:
+        path: /opt/py-agent/
+      name: py_agent
+      source: build
+    become: yes
+  - name: start service
+    docker_container:
+      name: py_agent
+      image: py_agent
+      state: started
+      restart: yes
+    become: yes
