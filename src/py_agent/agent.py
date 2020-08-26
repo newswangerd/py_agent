@@ -6,6 +6,8 @@ import logging
 from py_agent.db import init_db
 from py_agent.event_handler import EventHandler
 
+from functools import partial
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -35,3 +37,5 @@ class Agent:
             except Exception:
                 logging.error("Job failed", exc_info=True)
 
+    def create_partial(self, task):
+        return partial(task, handler=self.handler)

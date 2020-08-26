@@ -20,8 +20,9 @@ from py_agent.jobs import github_notifications
 from py_agent.listeners import add_issue_to_todoist, add_pr_to_todoist
 
 agent = Agent()
+task = agent.create_partial(github_notifications)
 
-agent.schedule.every(10).seconds.do(github_notifications, handler=agent.handler)
+agent.schedule.every(10).seconds.do(task)
 
 agent.add_listener(add_issue_to_todoist, {'event_type': ('==', 'new_issue_assigned')})
 agent.add_listener(add_pr_to_todoist, {'event_type': ('==', 'new_pr_review')})
