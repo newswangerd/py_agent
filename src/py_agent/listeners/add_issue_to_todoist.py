@@ -14,7 +14,7 @@ def add_issue_to_todoist(event=None, handler=None):
     
     r = event.data
     todoist.items.add(
-        '{} [#{}]({})'.format(r.title, r.number , r.html_url),
+        '{} [#{}]({})'.format(r['title'], r['number'] , r['html_url']),
         project_id=issue_project['id'],
     )
 

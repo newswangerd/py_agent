@@ -6,7 +6,11 @@ import logging
 from py_agent.db import init_db
 from py_agent.event_handler import EventHandler
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s.%(funcName)s(): %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+)
 
 
 class Agent:

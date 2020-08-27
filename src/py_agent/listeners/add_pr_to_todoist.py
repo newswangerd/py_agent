@@ -14,7 +14,7 @@ def add_pr_to_todoist(event=None, handler=None):
     
     r = event.data
     todoist.items.add(
-        '{} [{} #{}]({})'.format(r.title, r.base.repo.full_name, r.number , r.html_url),
+        '{} [{} #{}]({})'.format(r['title'], r['base']['repo']['full_name'], r['number'] , r['html_url']),
         project_id=review_project['id'],
         auto_reminder=True,
         due={"string": "next workday at 9am"},

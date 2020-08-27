@@ -1,6 +1,7 @@
 from py_agent.db import Event
 from datetime import datetime
 import operator
+import logging
 
 
 class InvalidMatchObect(Exception):
@@ -37,7 +38,7 @@ class EventHandler:
             self.db_session.add(e)
             self.db_session.commit()
 
-            print(e)
+            logging.info(f'New event -> {e}')
             self._emit_event(e)
 
     def query(self, match):

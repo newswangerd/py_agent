@@ -21,12 +21,12 @@ def github_notifications(handler=None, event=None):
         if n.unread:
             if n.reason == 'review_requested':
                 pr = n.get_pull_request()
-                handler.publish('new_pr_review', f'pr_review: {pr.id}', pr)
+                handler.publish('new_pr_review', f'pr_review: {pr.id}', pr._rawData)
                 added_notifications.append(n)
 
             if n.reason == 'assign':
                 issue = n.get_issue()
-                handler.publish('new_issue_assigned', f'issue_assigned: {issue.id}', issue)
+                handler.publish('new_issue_assigned', f'issue_assigned: {issue.id}', issue._rawData)
                 added_notifications.append(n)
 
     if len(added_notifications) > 0:
