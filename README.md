@@ -1,4 +1,4 @@
-# py_agent
+# PyAgent
 
 This is my personal automation project. It simply schedules a set of python jobs to run intermittently to do things for me like check the weather and add tasks to my todo list.
 
@@ -13,7 +13,7 @@ This model allows for separation of concerns between scripts that fetch data and
 
 ## Example Agent
 
-Here's an example agent. In this example `my_job` runs ever 2 seconds and emits an event of type `my_event_type` and a unique identifier of `123`. `my_listener` subscribes to all events that match the `my_event_type` event type.
+In this example `my_job` runs ever 2 seconds and emits an event of type `my_event_type` with a unique identifier of `123`. `my_listener` subscribes to all events that match the `my_event_type` event type and prints `event.data['payload']`.
 
 ```python
 from py_agent.agent import Agent
