@@ -26,11 +26,3 @@ def init_db(filename=':memory:'):
     Session = sessionmaker(bind=engine)
     Base.metadata.create_all(engine)
     return Session()
-
-# session = init_db()
-# testd = Event(created=datetime.now(), event_type='test', identifier='abc', data={'hello': 'world'})
-# session.add(testd)
-# e = session.query(Event).filter_by(identifier='abc', event_type='test').first()
-
-# print (e.__dict__)
-# print (e.data['hello'])

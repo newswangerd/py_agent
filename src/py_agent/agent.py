@@ -14,8 +14,9 @@ logging.basicConfig(
 
 
 class Agent:
-    def __init__(self):
-        db_path = os.environ.get('PY_AGENT_DB_PATH')
+    def __init__(self, db_path=None):
+        if not db_path:
+            db_path = os.environ.get('PY_AGENT_DB_PATH')
         if not db_path:
             db_path = os.path.join(os.path.dirname(__file__), 'data.sqlite')
         
@@ -23,7 +24,7 @@ class Agent:
         self.handler = EventHandler(self.db_session)
         self.schedule = schedule
     
-    def add_listener(self, fn, match):
+    def add_listener(self, fn, match=None):
         self.handler.subscribe(fn, match)
     
     def go(self):

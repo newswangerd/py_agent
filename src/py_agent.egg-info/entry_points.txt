@@ -1,0 +1,3 @@
+[console_scripts]
+agent-test = py_agent.agent_test:main
+

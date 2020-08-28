@@ -23,8 +23,8 @@ class EventHandler:
         self.db_session = db_session
     
 
-    def subscribe(self, fn, log_match):
-        self.listeners.append({'job': fn, 'match': log_match})
+    def subscribe(self, fn, listen_for=None):
+        self.listeners.append({'job': fn, 'match': listen_for or fn.listen_for})
 
     def publish(self, event_type, identifier, data):
         # check if event exists
@@ -41,8 +41,17 @@ class EventHandler:
             logging.info(f'New event -> {e}')
             self._emit_event(e)
 
-    def query(self, match):
-        pass
+    def query_events(self, match):
+        if not self._is_valid_match_object(match):
+            raise InvalidMatchObect(str(match) + ' is not a valid match object')
+
+        q = self.db_session.query(Event)
+        for key in match:
+            op, val = match[key]
+            op = self.OPERATORS[op]
+            q.filter(op(key, val))
+        return q.all()
+
 
     def _emit_event(self, event):
         for listener in self.listeners:
@@ -52,7 +61,7 @@ class EventHandler:
     def _is_match(self, event, match):
         if not self._is_valid_match_object(match):
             raise InvalidMatchObect(str(match) + ' is not a valid match object')
-
+        
         matched = True
         # call a property so the object is initialized and can be loaded into a dict
         event.id

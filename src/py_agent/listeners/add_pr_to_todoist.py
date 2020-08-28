@@ -1,6 +1,8 @@
 from todoist import TodoistAPI
 from py_agent.credentials import get_credential
+from py_agent.utils import listen_for
 
+@listen_for({'event_type': ('==', 'new_pr_review')})
 def add_pr_to_todoist(event=None, handler=None):
     todoist = TodoistAPI(get_credential('todoist_token'))
     todoist.sync()
@@ -22,4 +24,4 @@ def add_pr_to_todoist(event=None, handler=None):
     )
 
     # todo close todos for prs/issues that are no longer active
-    todoist.commit()   
+    todoist.commit()

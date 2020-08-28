@@ -2,4 +2,5 @@ setup.py
 py_agent.egg-info/PKG-INFO
 py_agent.egg-info/SOURCES.txt
 py_agent.egg-info/dependency_links.txt
+py_agent.egg-info/entry_points.txt
 py_agent.egg-info/top_level.txt
