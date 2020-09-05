@@ -1,0 +1,196 @@
+{
+  "bus_schedule": {
+    "86_to_cambridge": [
+      "2020-08-28T23:18:53-04:00"
+    ],
+    "501_to_downtown": [],
+    "57_to_kenmore": [
+      "2020-08-28T23:02:40-04:00",
+      "2020-08-28T23:25:48-04:00",
+      "2020-08-28T23:37:36-04:00",
+      "2020-08-28T23:53:20-04:00"
+    ]
+  },
+  "weather": {
+    "1": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "light",
+        "rain_gear": "none"
+      },
+      "temperature": 70,
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ],
+      "humidity": 63
+    },
+    "2": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "light",
+        "rain_gear": "none"
+      },
+      "temperature": 70,
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ],
+      "humidity": 62
+    },
+    "3": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "light",
+        "rain_gear": "none"
+      },
+      "temperature": 70,
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ],
+      "humidity": 62
+    },
+    "4": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "light",
+        "rain_gear": "none"
+      },
+      "temperature": 69,
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04n"
+        }
+      ],
+      "humidity": 70
+    },
+    "5": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "heavy",
+        "rain_gear": "light"
+      },
+      "temperature": 70,
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "humidity": 75
+    },
+    "6": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "heavy",
+        "rain_gear": "light"
+      },
+      "temperature": 70,
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10n"
+        }
+      ],
+      "humidity": 82
+    },
+    "7": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "heavy",
+        "rain_gear": "light"
+      },
+      "temperature": 71,
+      "weather": [
+        {
+          "id": 501,
+          "main": "Rain",
+          "description": "moderate rain",
+          "icon": "10d"
+        }
+      ],
+      "humidity": 87
+    },
+    "8": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "heavy",
+        "rain_gear": "light"
+      },
+      "temperature": 71,
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "humidity": 88
+    },
+    "now": {
+      "profile": {
+        "legs": "light",
+        "jacket": "none",
+        "head": "none",
+        "gloves": "none",
+        "shoes": "light",
+        "rain_gear": "none"
+      },
+      "temperature": 77,
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03d"
+        }
+      ],
+      "humidity": 44
+    }
+  }
+}

@@ -1,5 +1,7 @@
 from py_agent.db import Event
 from datetime import datetime
+from sqlalchemy.sql import operators
+
 import operator
 import logging
 
@@ -29,6 +31,7 @@ class EventHandler:
     def publish(self, event_type, identifier, data):
         # check if event exists
         if(self.db_session.query(Event).filter_by(identifier=identifier).scalar() is None):
+            print(data.keys())
             e = Event(
                 created=datetime.now(), 
                 event_type=event_type,
@@ -46,11 +49,12 @@ class EventHandler:
             raise InvalidMatchObect(str(match) + ' is not a valid match object')
 
         q = self.db_session.query(Event)
-        for key in match:
-            op, val = match[key]
+        for col_name in match:
+            op, val = match[col_name]
             op = self.OPERATORS[op]
-            q.filter(op(key, val))
-        return q.all()
+            col_obj = getattr(Event, col_name)
+            q = q.filter(op(col_obj, val))
+        return q
 
 
     def _emit_event(self, event):
@@ -70,9 +74,16 @@ class EventHandler:
         for key in match:
             val1 = event_dict[key]
             op, val2 = match[key]
-            if not self.OPERATORS[op](val1, val2):
-                matched = False
-                break
+
+            # for some reason 'in' is reversed
+            if op == 'in':
+                if not self.OPERATORS[op](val2, val1):
+                    matched = False
+                    break
+            else:
+                if not self.OPERATORS[op](val1, val2):
+                    matched = False
+                    break
         
         return matched
             
