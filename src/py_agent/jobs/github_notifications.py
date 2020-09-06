@@ -29,6 +29,11 @@ def github_notifications(handler=None, event=None):
                 handler.publish('new_issue_assigned', f'issue_assigned: {issue.id}', issue._rawData)
                 added_notifications.append(n)
 
+            # if n.reason == 'mention':
+            #     issue = n.get_issue()
+            #     handler.publish('new_issue_assigned', f'issue_assigned: {issue.id}', issue._rawData)
+            #     added_notifications.append(n)
+
     if len(added_notifications) > 0:
         logging.info("Marking notifications as read")
         for n in added_notifications:
