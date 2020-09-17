@@ -1,6 +1,6 @@
 def get_project_by_name(client, project_name):
     for p in client.state['projects']:
-        if p['name'].lower() == project_name:
+        if p['name'].lower() == project_name.lower():
             return p
 
 

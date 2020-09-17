@@ -25,7 +25,7 @@ def add_article_to_dropbox(event=None, handler=None):
     existing_file = None
     try:
         # if the file doesn't exist, the api throws an exception
-        m, f = dbx.files_download(upload_path)
+        f = dbx.files_download(upload_path)[1]
         existing_file = f.content.decode('utf-8')
     except:
         pass
