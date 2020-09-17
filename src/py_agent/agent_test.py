@@ -14,6 +14,7 @@ def pars_args():
     parser.add_argument('--emit-id', '-id', type=str, dest='emit_id', help='Emits any events that match the givent id.')
     parser.add_argument('-m', dest='memory_db', action='store_true', help='Use an in memory db.')
     parser.add_argument('--rm-db', '-r', dest='re_init_db', action='store_true', help='Remove drop the database before running anything.')
+    parser.add_argument('--db-file', dest='db_file', type=str, help='Specify a database file to use.')
 
     return parser.parse_args()
 
@@ -42,19 +43,24 @@ def import_string(dotted_path):
 def main():
     args = pars_args()
 
-    db_path = os.path.join(os.path.dirname(__file__), 'test_data.sqlite')
-
     listener = args.listener
     job = args.job
     memory_db = args.memory_db
     re_init_db = args.re_init_db
     emit_type = args.emit_type
     emit_id = args.emit_id
+    db_path = args.db_file
+
+    if not db_path:
+        db_path = os.path.join(os.path.dirname(__file__), 'test_data.sqlite')
 
     agent = None
 
     if re_init_db:
-        os.remove(db_path)
+        if args.db_file:
+            print ("--rm-db and --db-file are mutually exclusive to avoid accidental data loss. Ignore --rm-db")
+        else:
+            os.remove(db_path)
 
     if memory_db:
         agent = Agent(':memory:')
