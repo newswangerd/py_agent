@@ -1,10 +1,10 @@
 import os
-import schedule
 import time
 import logging
 
 from py_agent.db import init_db
 from py_agent.event_handler import EventHandler
+from py_agent.scheduler import SafeScheduler
 
 logging.basicConfig(
     level=logging.INFO,
@@ -22,7 +22,7 @@ class Agent:
         
         self.db_session = init_db(db_path)
         self.handler = EventHandler(self.db_session)
-        self.schedule = schedule
+        self.schedule = SafeScheduler()
     
     def add_listener(self, fn, match=None):
         self.handler.subscribe(fn, match)
@@ -30,13 +30,6 @@ class Agent:
     def go(self):
         logging.info('Starting agent')
         while True:
-            try:
-                self.schedule.run_pending()
-                time.sleep(1)
-            except KeyboardInterrupt:
-                logging.info('Shutting down')
-                schedule.clear()
-                exit()
-            except Exception:
-                logging.error("Job failed", exc_info=True)
+            self.schedule.run_pending()
+            time.sleep(1)
 
