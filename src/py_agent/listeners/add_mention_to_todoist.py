@@ -12,10 +12,10 @@ def add_mention_to_todoist(event=None, handler=None):
 
     r = event.data
     todoist.items.add(
-        '{} [#{}]({})'.format(r['title'], r['number'] , r['url']),
-        project_id=mention_project['id'],
-        auto_reminder=True,
-        due={"string": "next workday at 9am"},
+        'GH Mention - {} [#{}]({})'.format(r['title'], r['number'] , r['url']),
+        # project_id=mention_project['id'],
+        # auto_reminder=True,
+        # due={"string": "next workday at 9am"},
         priority=4
     )
 

@@ -1,4 +1,5 @@
 import re
+import logging
 
 from todoist import TodoistAPI
 from py_agent.credentials import get_credential
@@ -15,9 +16,29 @@ def todoist_reading_list(handler=None):
         for project in categories:
             if task['project_id'] == project['id']:
                 content = task['content']
+                logging.info(content)
                 m = re.search(r'\[([^\[]+)\]\((.*)\)', content)
-                title = m.group(1)
-                url = m.group(2)
+
+                # The todoist app stores links as either a markdown formatted link or "title - url"
+                # if markdown links fail, try to parse the "title - url" format.
+                if m:
+                    logging.info("markdown group")
+                    title = m.group(1)
+                    url = m.group(2)
+                    logging.info(title)
+                    logging.info(url)
+                else:
+                    logging.info("hyphen group")
+                    content_components = content.split(" - ")
+                    if len(content_components) > 1:
+                        title = ''.join(content_components[:-1])
+                        url = content_components[-1].strip()
+                        logging.info(title)
+                        logging.info(url)
+                    else:
+                        task.update(content="FAILED TO PARSE: " + content)
+                        task.move(parent_id=reading_list['id'])
+
                 comments = t_utils.get_comments_for_task(todoist, task)
 
                 article = article_parser.parse_url(url)

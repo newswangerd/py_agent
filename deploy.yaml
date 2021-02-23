@@ -23,6 +23,10 @@
       name: py_agent
       source: build
       force_source: yes
+    register: out
+    
+  - debug: var=out
+
   - name: start service
     docker_container:
       name: py_agent

@@ -5,3 +5,5 @@ credentials.json
 inventory
 *data.sqlite
 experimental/
+db.sqlite
+.vscode/

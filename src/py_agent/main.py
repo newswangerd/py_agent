@@ -8,6 +8,10 @@ from py_agent.listeners import (
     add_mention_to_todoist
 )
 
+import logging
+
+logging.info("PyAgent is a GO")
+
 agent = Agent()
 
 agent.schedule.every(10).minutes.do(github_notifications, handler=agent.handler)
