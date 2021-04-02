@@ -16,16 +16,23 @@
     copy:
       src: src/
       dest: "{{ project_base_path }}"
+  # The ansible module seems to be real slow. It seems to not use the cache correctly
+  #  - name: build images
+  #   docker_image:
+  #     build:
+  #       path: "{{ project_base_path }}"
+  #       pull: no
+  #     name: py_agent
+  #     source: build
+  #     # force_source: yes
+  #   register: out
+
   - name: build images
-    docker_image:
-      build:
-        path: "{{ project_base_path }}"
-      name: py_agent
-      source: build
-      force_source: yes
+    shell:
+      cmd: "docker build -t py_agent {{ project_base_path }}"
     register: out
-    
-  - debug: var=out
+
+  - debug: var=out.stdout_lines
 
   - name: start service
     docker_container:

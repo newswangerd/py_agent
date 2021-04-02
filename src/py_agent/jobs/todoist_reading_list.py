@@ -14,7 +14,7 @@ def todoist_reading_list(handler=None):
 
     for task in todoist.state['items']:
         for project in categories:
-            if task['project_id'] == project['id']:
+            if task['project_id'] == project['id'] and task['date_completed'] == None:
                 content = task['content']
                 logging.info(content)
                 m = re.search(r'\[([^\[]+)\]\((.*)\)', content)
